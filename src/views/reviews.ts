@@ -67,7 +67,6 @@ export async function createReviewView(request: FastifyRequest, reply: FastifyRe
     if (activeStaff.length) {
       await transaction.notification.createMany({
         data: activeStaff.map(({ id }) => ({ recipientUserId: id, reviewId: createdReview.id })),
-        skipDuplicates: true,
       });
     }
     return createdReview;
